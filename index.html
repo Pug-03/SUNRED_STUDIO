@@ -1256,10 +1256,12 @@
       paused = true;
       if (resumeTimer) clearTimeout(resumeTimer);
     }, { passive: true });
-    marquee.addEventListener('touchend', function(){
+    function scheduleResume(){
       if (resumeTimer) clearTimeout(resumeTimer);
       resumeTimer = setTimeout(function(){ paused = false; }, 1600);
-    }, { passive: true });
+    }
+    marquee.addEventListener('touchend', scheduleResume, { passive: true });
+    marquee.addEventListener('touchcancel', scheduleResume, { passive: true });
 
     function tick(){
       var half = track.scrollWidth / 2;
@@ -1274,7 +1276,7 @@
     requestAnimationFrame(tick);
   }
 
-  initMarquee(document.querySelector('.cuts-marquee'), document.getElementById('cutsTrack'), 'cuts-set', 0.45);
+  initMarquee(document.querySelector('.cuts-marquee'), document.getElementById('cutsTrack'), 'cuts-set', 0.9);
   initMarquee(document.querySelector('.reviews-marquee'), document.getElementById('reviewsTrack'), 'reviews-set', 0.5);
 
   var lightbox = document.getElementById('lightbox');
