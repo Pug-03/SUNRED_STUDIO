@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="th" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUNRED STUDIO — ร้านตัดผมชาย นครปฐม</title>
+<meta name="description" content="SUNRED STUDIO ร้านตัดผมชายที่นครปฐม เปิดทุกวัน 10:00–20:00 น. ตัดผมเริ่ม 200 บาท โทรจองคิว 061-134-2874">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="SUNRED STUDIO — ร้านตัดผมชาย นครปฐม">
+<meta property="og:description" content="ร้านตัดผมชาย เปิดทุกวัน 10:00–20:00 น. โทรจองคิว 061-134-2874">
+<meta property="og:image" content="assets/logo.jpg">
+<meta property="og:locale" content="th_TH">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "SUNRED STUDIO",
+  "image": "assets/logo.jpg",
+  "telephone": "+66611342874",
+  "priceRange": "฿50-฿350",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "174 ถนนยิงเป้า ตำบลสนามจันทร์ อำเภอเมืองนครปฐม",
+    "addressLocality": "นครปฐม",
+    "addressRegion": "นครปฐม",
+    "postalCode": "73000",
+    "addressCountry": "TH"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 13.808711,
+    "longitude": 100.046276
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "10:00",
+    "closes": "20:00"
+  }],
+  "sameAs": [
+    "https://www.facebook.com/share/1a7z971wAq/",
+    "https://www.instagram.com/sunred.studio/"
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --surface:#F5F4F2;
+    --red:#E4141C;
+    --red-deep:#A80D13;
+    --red-tint:#FFF2F2;
+    --ink:#0B0B0B;
+    --ink-soft:#6B6B6B;
+    --line:#E6E4E1;
+
+    --font-display:'Bai Jamjuree', sans-serif;
+    --font-body:'IBM Plex Sans Thai', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+
+    --exp: cubic-bezier(.16,1,.3,1);
+    --smooth: cubic-bezier(.65,0,.35,1);
+
+    --t-micro: 150ms;
+    --t-base: 350ms;
+    --t-slow: 600ms;
+    --t-hero: 950ms;
+
+    --gap-section: 72px;
+    --radius-btn: 10px;
+    --radius-card: 16px;
+    --radius-img: 18px;
+  }
+
+  @media (min-width:1024px){
+    :root{ --gap-section: 140px; }
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  h1,h2,h3{ margin:0; font-family:var(--font-display); font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  button{ font-family:inherit; }
+
+  :focus-visible{
+    outline: 2.5px solid var(--red);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 20px; }
+  @media (min-width:768px){ .wrap{ padding:0 32px; } }
+
+  .section{ padding-block: var(--gap-section); }
+  .section--alt{ background:var(--surface); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-mono); font-weight:600; font-size:13px;
+    letter-spacing:.04em; color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{
+    content:''; width:20px; height:3px; background:var(--red); flex:none;
+  }
+
+  .section-head{ margin-bottom:40px; }
+  .section-head h2{ font-size:clamp(28px,5vw,40px); }
+  .cut-rule{
+    width:56px; height:4px; background:var(--red); margin-bottom:16px;
+    transform-origin:left; transform:scaleX(0); transition:transform var(--t-slow) var(--exp);
+  }
+  .section-head.in-view .cut-rule{ transform:scaleX(1); }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    font-family:var(--font-body); font-weight:600; font-size:15px;
+    padding:14px 24px; border-radius:var(--radius-btn);
+    transition: transform var(--t-micro) var(--smooth), background-color var(--t-micro) linear;
+    cursor:pointer; border:1.5px solid transparent; white-space:nowrap;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:active{ transform:scale(.97); }
+  .btn-primary{ background:var(--red); color:#fff; }
+  .btn-primary:hover{ background:var(--red-deep); }
+  .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:#fff; }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:fixed; inset:0 0 auto 0; z-index:100;
+    padding-top:env(safe-area-inset-top);
+  }
+  .site-header::before{
+    content:''; position:absolute; inset:0;
+    background:rgba(255,255,255,.86);
+    -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+    opacity:0; transition:opacity 400ms var(--smooth);
+  }
+  .site-header.is-scrolled::before{ opacity:1; }
+  .header-inner{
+    position:relative; display:flex; align-items:center; justify-content:space-between;
+    gap:16px; padding:14px 20px; max-width:1180px; margin:0 auto;
+  }
+  @media (min-width:768px){ .header-inner{ padding:16px 32px; } }
+
+  .brand{ display:flex; align-items:center; gap:10px; flex:none; }
+  .brand img{ height:36px; width:36px; border-radius:50%; object-fit:cover; }
+  .brand-name{ font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.01em; }
+
+  .header-right{ display:flex; align-items:center; gap:14px; }
+
+  .hours-pill{
+    display:none; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:13px; font-weight:600;
+    color:var(--ink-soft);
+  }
+  @media (min-width:860px){ .hours-pill{ display:flex; } }
+  .status-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--red); flex:none;
+    animation: pulseDot 2.4s var(--smooth) infinite;
+  }
+
+  .social-row{ display:flex; align-items:center; gap:6px; }
+  .social-link{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%; color:var(--ink);
+    transition: transform var(--t-micro) var(--smooth), background-color var(--t-micro) linear;
+  }
+  .social-link:hover{ background:var(--surface); transform:translateY(-2px); }
+  .social-link svg{ width:17px; height:17px; }
+
+  .call-btn-label-full{ display:none; }
+  @media (min-width:768px){
+    .call-btn-label-full{ display:inline; }
+    .call-btn-label-short{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center;
+    padding-top:calc(84px + env(safe-area-inset-top));
+    padding-bottom:56px;
+  }
+  .hero-inner{ max-width:1180px; margin:0 auto; padding:0 20px; width:100%; }
+  @media (min-width:768px){ .hero-inner{ padding:0 32px; } }
+
+  .hero-stagger{
+    opacity:0; transform:translateY(22px);
+    transition: opacity var(--t-hero) var(--exp), transform var(--t-hero) var(--exp);
+  }
+  .hero-loaded .hero-stagger{ opacity:1; transform:none; }
+  .hero-loaded .s1{ transition-delay:0ms; }
+  .hero-loaded .s2{ transition-delay:110ms; }
+  .hero-loaded .s3{ transition-delay:220ms; }
+  .hero-loaded .s4{ transition-delay:330ms; }
+  .hero-loaded .s5{ transition-delay:440ms; }
+
+  .hero-title{
+    position:relative;
+    font-size:clamp(38px,7.5vw,68px);
+    max-width:16ch;
+  }
+  .hero-title .cut-sweep{
+    content:''; position:absolute; left:0; top:8%; width:100%; height:38%;
+    background:var(--red); transform:scaleX(0); transform-origin:left; z-index:1;
+    animation: heroSweep 650ms var(--smooth) forwards;
+    animation-delay:760ms;
+  }
+  .hero-title span{ position:relative; z-index:0; }
+
+  .hero-sub{
+    font-size:17px; color:var(--ink-soft); max-width:46ch; margin:20px 0 32px;
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:48px; }
+
+  .hero-facts{
+    display:grid; grid-template-columns:1fr; gap:20px;
+    padding-top:28px; border-top:1px solid var(--line);
+  }
+  @media (min-width:640px){ .hero-facts{ grid-template-columns:repeat(3,1fr); } }
+  .fact-label{ font-size:13px; color:var(--ink-soft); margin-bottom:4px; }
+  .fact-value{ font-family:var(--font-mono); font-weight:600; font-size:16px; font-variant-numeric:tabular-nums; }
+  .fact-value.is-red{ color:var(--red); }
+
+  /* ---------- reveal (scroll) ---------- */
+  .reveal{
+    opacity:0; transform:translateY(26px);
+    transition: opacity var(--t-slow) var(--exp), transform var(--t-slow) var(--exp);
+  }
+  .reveal.in-view{ opacity:1; transform:none; }
+
+  /* ---------- services ---------- */
+  .price-list{ max-width:760px; }
+  .price-row{
+    display:flex; align-items:baseline; gap:14px; padding:22px 0;
+    border-bottom:1px solid var(--line);
+    transition: transform var(--t-base) var(--smooth);
+  }
+  .price-row:hover{ transform:translateX(8px); }
+  .price-row:last-of-type{ border-bottom:none; }
+  .price-name-th{ font-family:var(--font-display); font-weight:700; font-size:19px; }
+  .price-name-en{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
+  .price-leader{ flex:1; border-bottom:2px dotted var(--line); height:0; align-self:center; margin-bottom:6px; }
+  .price-value{
+    font-family:var(--font-mono); font-weight:600; font-size:19px; color:var(--red);
+    font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .price-note{
+    margin-top:32px; font-size:14px; color:var(--ink-soft);
+  }
+  .price-note a{ color:var(--ink); font-weight:600; font-family:var(--font-mono); }
+
+  /* ---------- cuts grid ---------- */
+  .cuts-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  }
+  @media (min-width:768px){ .cuts-grid{ grid-template-columns:repeat(3,1fr); gap:24px; } }
+
+  .cut-card{
+    transition: opacity var(--t-slow) var(--exp), transform var(--t-slow) var(--exp);
+  }
+  .cuts-grid .cut-card:nth-child(1){ transition-delay:0ms; }
+  .cuts-grid .cut-card:nth-child(2){ transition-delay:70ms; }
+  .cuts-grid .cut-card:nth-child(3){ transition-delay:140ms; }
+  .cuts-grid .cut-card:nth-child(4){ transition-delay:210ms; }
+  .cuts-grid .cut-card:nth-child(5){ transition-delay:280ms; }
+  .cuts-grid .cut-card:nth-child(6){ transition-delay:350ms; }
+
+  .cut-name{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-display); font-weight:600; font-size:15px;
+    margin-bottom:10px;
+  }
+  .cut-name::before{
+    content:''; width:14px; height:3px; background:var(--red); flex:none;
+    transition: width var(--t-base) var(--smooth);
+  }
+  .cut-card:hover .cut-name::before,
+  .cut-card:focus-within .cut-name::before{ width:26px; }
+
+  .cut-media{
+    position:relative; aspect-ratio:3/4; border-radius:var(--radius-img);
+    overflow:hidden; background:var(--surface);
+    transform: translateY(0);
+    transition: transform var(--t-slow) var(--smooth);
+  }
+  .cut-card:hover .cut-media, .cut-card:focus-within .cut-media{ transform:translateY(-6px); }
+  .cut-media img{ width:100%; height:100%; object-fit:cover; }
+  .cut-media::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:4px;
+    background:var(--red); transform:scaleX(0); transform-origin:left;
+    transition: transform var(--t-base) var(--smooth);
+  }
+  .cut-card:hover .cut-media::after, .cut-card:focus-within .cut-media::after{ transform:scaleX(1); }
+
+  .img-fallback{
+    display:none; position:absolute; inset:8px; border:1.5px dashed var(--ink-soft);
+    border-radius:calc(var(--radius-img) - 4px);
+    align-items:center; justify-content:center; text-align:center;
+    padding:12px; font-size:12px; color:var(--ink-soft); font-family:var(--font-mono);
+  }
+  .img-missing .img-fallback{ display:flex; }
+
+  /* ---------- barber ---------- */
+  .barber-grid{ display:grid; grid-template-columns:1fr; gap:32px; }
+  @media (min-width:860px){ .barber-grid{ grid-template-columns:1fr 1fr; gap:56px; align-items:center; } }
+
+  .barber-photo{
+    position:relative; aspect-ratio:4/5; border-radius:var(--radius-img);
+    overflow:hidden; background:var(--surface);
+  }
+  .barber-photo img{ width:100%; height:100%; object-fit:cover; }
+
+  .role-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-weight:600; font-size:12.5px;
+    color:var(--red); background:var(--red-tint); padding:6px 12px;
+    border-radius:999px; margin-bottom:16px;
+  }
+  .barber-name{ font-size:clamp(26px,4vw,34px); margin-bottom:16px; }
+  .barber-bio{ color:var(--ink-soft); max-width:52ch; margin-bottom:24px; }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .skill-tag{
+    font-size:13px; font-weight:600; padding:8px 14px; border:1px solid var(--line);
+    border-radius:999px;
+  }
+
+  /* ---------- reviews ---------- */
+  .review-summary{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:16px; margin-bottom:44px;
+  }
+  .review-score{
+    font-family:var(--font-display); font-weight:700; color:var(--red);
+    font-size:56px; line-height:1; font-variant-numeric:tabular-nums;
+  }
+  .review-stars{ display:inline-flex; gap:3px; }
+  .review-stars svg{ width:18px; height:18px; }
+  .review-count{ font-size:14px; color:var(--ink-soft); }
+
+  .reviews-grid{ display:grid; grid-template-columns:1fr; gap:20px; }
+  @media (min-width:768px){ .reviews-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  .review-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-card);
+    padding:26px; transition: transform var(--t-base) var(--smooth), box-shadow var(--t-base) var(--smooth);
+  }
+  .review-card:hover{ transform:translateY(-6px); box-shadow:0 18px 32px -22px rgba(11,11,11,.28); }
+  .reviews-grid .review-card:nth-child(1){ transition-delay:0ms; }
+  .reviews-grid .review-card:nth-child(2){ transition-delay:70ms; }
+  .reviews-grid .review-card:nth-child(3){ transition-delay:140ms; }
+
+  .review-card .review-stars{ margin-bottom:14px; }
+  .review-text{ font-size:14.5px; margin-bottom:22px; min-height:66px; }
+  .review-by{ display:flex; align-items:center; gap:10px; }
+  .review-avatar{
+    width:36px; height:36px; border-radius:50%; background:var(--surface);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-weight:600; font-size:13px; color:var(--ink-soft);
+    flex:none;
+  }
+  .review-name{ font-size:13.5px; font-weight:600; }
+  .review-date{ font-size:12px; color:var(--ink-soft); }
+
+  /* ---------- footer ---------- */
+  .site-footer{ background:var(--ink); color:#fff; padding-block:64px; }
+  .footer-grid{ display:grid; grid-template-columns:1fr; gap:40px; }
+  @media (min-width:768px){ .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; gap:32px; } }
+
+  .footer-brand{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .footer-brand img{ height:34px; width:34px; border-radius:50%; }
+  .footer-brand span{ font-family:var(--font-display); font-weight:700; font-size:16px; }
+  .footer-addr{ color:#B9B9B9; font-size:14px; max-width:32ch; margin-bottom:20px; }
+  .footer-social{ display:flex; gap:10px; }
+  .footer-social .social-link{ color:#fff; }
+  .footer-social .social-link:hover{ background:rgba(255,255,255,.12); }
+
+  .footer-heading{
+    font-family:var(--font-mono); font-weight:600; font-size:12.5px;
+    letter-spacing:.06em; color:#8E8E8E; margin-bottom:14px;
+  }
+  .footer-hours{ font-family:var(--font-mono); font-size:15px; font-variant-numeric:tabular-nums; margin-bottom:6px; }
+  .footer-hours-note{ font-size:13px; color:#B9B9B9; }
+  .footer-phone{ font-family:var(--font-mono); font-weight:600; font-size:16px; margin-bottom:14px; display:inline-block; }
+  .footer-map-link{
+    display:inline-flex; align-items:center; gap:8px; font-size:14px; color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:2px;
+  }
+  .footer-bottom{
+    margin-top:48px; padding-top:24px; border-top:1px solid rgba(255,255,255,.14);
+    font-size:12.5px; color:#8E8E8E;
+  }
+
+  /* ---------- mobile floating call button ---------- */
+  .float-call{
+    position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom));
+    z-index:90; border-radius:999px; padding:15px 22px;
+    background:var(--red); color:#fff; font-weight:600; font-size:14.5px;
+    display:flex; align-items:center; gap:8px; box-shadow:0 14px 28px -12px rgba(228,20,28,.55);
+    transform:translateY(140%); opacity:0;
+    transition: transform 500ms var(--exp), opacity 500ms var(--exp), background-color var(--t-micro) linear;
+  }
+  .float-call.is-visible{ transform:translateY(0); opacity:1; }
+  .float-call:hover{ background:var(--red-deep); }
+  .float-call:active{ transform:scale(.97); }
+  @media (min-width:860px){ .float-call{ display:none; } }
+
+  @keyframes pulseDot{
+    0%,100%{ opacity:1; } 50%{ opacity:.25; }
+  }
+  @keyframes heroSweep{
+    0%{ transform:scaleX(0); transform-origin:left; }
+    45%{ transform:scaleX(1); transform-origin:left; }
+    46%{ transform:scaleX(1); transform-origin:right; }
+    100%{ transform:scaleX(0); transform-origin:right; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; }
+    .hero-stagger, .reveal, .cut-card, .review-card{
+      transition-duration:200ms !important; transition-delay:0ms !important;
+      transform:none !important;
+    }
+    .hero-title .cut-sweep{ animation:none !important; display:none; }
+    .status-dot{ animation:none !important; }
+    .float-call{ transition-duration:200ms !important; }
+    .cut-media, .cut-media::after, .cut-name::before{ transition-duration:200ms !important; }
+  }
+
+  .no-js .hero-stagger, .no-js .reveal{ opacity:1; transform:none; }
+  .no-js .hero-title .cut-sweep{ display:none; }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="SUNRED STUDIO หน้าแรก">
+      <img src="assets/logo.jpg" alt="โลโก้ SUNRED STUDIO">
+      <span class="brand-name">SUNRED STUDIO</span>
+    </a>
+    <div class="header-right">
+      <div class="hours-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>10:00–20:00</span>
+      </div>
+      <nav class="social-row" aria-label="โซเชียลมีเดียร้าน">
+        <a class="social-link" href="https://www.facebook.com/share/1a7z971wAq/" target="_blank" rel="noopener" aria-label="Facebook SUNRED STUDIO">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h-1.6c-.9 0-1.4.6-1.4 1.5V11h3l-.4 3h-2.6v7h-3v-7H7v-3h1.9V9c0-2.2 1.3-3.6 3.6-3.6H15V8z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.instagram.com/sunred.studio/" target="_blank" rel="noopener" aria-label="Instagram SUNRED STUDIO">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.4"/><circle cx="16.4" cy="7.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <!-- TODO: ยังไม่มีลิงก์ TikTok จริง ใส่ URL แทน # เมื่อร้านเปิดบัญชี -->
+        <a class="social-link" href="#" target="_blank" rel="noopener" aria-label="TikTok SUNRED STUDIO">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v9.8a3.2 3.2 0 1 1-2.6-3.15"/><path d="M14 4c.3 2 1.8 3.5 3.7 3.8"/></svg>
+        </a>
+      </nav>
+      <a class="btn btn-primary" href="tel:+66611342874">
+        <span class="call-btn-label-short">จองคิว</span>
+        <span class="call-btn-label-full">โทรจองคิว · 061-134-2874</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow hero-stagger s1">ร้านตัดผมชาย · นครปฐม</p>
+      <h1 class="hero-title hero-stagger s2">
+        <span class="cut-sweep" aria-hidden="true"></span>
+        <span>ตัดผมให้เป๊ะ<br>ไม่ต้องรอคิวนาน</span>
+      </h1>
+      <p class="hero-sub hero-stagger s3">เปิดทุกวัน 10:00–20:00 น. ไม่มีวันหยุด โทรจองคิวล่วงหน้าได้เลย ไม่ต้องเดินทางมาต่อคิว</p>
+      <div class="hero-actions hero-stagger s4">
+        <a class="btn btn-primary" href="tel:+66611342874">โทรจองคิว 061-134-2874</a>
+        <a class="btn btn-outline" href="#services">ดูค่าบริการ</a>
+      </div>
+      <div class="hero-facts hero-stagger s5">
+        <div>
+          <div class="fact-label">เวลาเปิดปิด</div>
+          <div class="fact-value">10:00–20:00 ทุกวัน</div>
+        </div>
+        <div>
+          <div class="fact-label">ทำเลที่ตั้ง</div>
+          <div class="fact-value">ถนนยิงเป้า สนามจันทร์ นครปฐม</div>
+        </div>
+        <div>
+          <div class="fact-label">ราคาเริ่มต้น</div>
+          <div class="fact-value is-red">200 บาท</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="cut-rule" aria-hidden="true"></div>
+        <h2>ค่าบริการ</h2>
+      </div>
+      <div class="price-list reveal">
+        <div class="price-row">
+          <div>
+            <div class="price-name-th">ตัดผมชาย</div>
+            <div class="price-name-en">Haircut</div>
+          </div>
+          <div class="price-leader" aria-hidden="true"></div>
+          <div class="price-value">200 บาท</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price-name-th">กันหน้า / โกนหนวด</div>
+            <div class="price-name-en">Shave</div>
+          </div>
+          <div class="price-leader" aria-hidden="true"></div>
+          <div class="price-value">50 บาท</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price-name-th">สระผม</div>
+            <div class="price-name-en">Hair Wash</div>
+          </div>
+          <div class="price-leader" aria-hidden="true"></div>
+          <div class="price-value">50 บาท</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price-name-th">สระ &amp; เซต</div>
+            <div class="price-name-en">Hair Wash &amp; Styling</div>
+          </div>
+          <div class="price-leader" aria-hidden="true"></div>
+          <div class="price-value">100 บาท</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price-name-th">ย้อมผมปิดหงอก</div>
+            <div class="price-name-en">Gray Coverage</div>
+          </div>
+          <div class="price-leader" aria-hidden="true"></div>
+          <div class="price-value">350 บาท</div>
+        </div>
+      </div>
+      <p class="price-note reveal">โทรสอบถามคิวว่างได้ที่ <a href="tel:+66611342874">061-134-2874</a></p>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="cuts">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="cut-rule" aria-hidden="true"></div>
+        <h2>ทรงผมที่ตัดมา</h2>
+      </div>
+      <div class="cuts-grid">
+
+        <div class="cut-card reveal">
+          <span class="cut-name">Skin Fade</span>
+          <div class="cut-media">
+            <img src="assets/cuts/cut-1.jpg" alt="ทรงผม Skin Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
+            <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-1.jpg</div>
+          </div>
+        </div>
+
+        <div class="cut-card reveal">
+          <span class="cut-name">Crew Cut</span>
+          <div class="cut-media">
+            <img src="assets/cuts/cut-2.jpg" alt="ทรงผม Crew Cut ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
+            <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-2.jpg</div>
+          </div>
+        </div>
+
+        <div class="cut-card reveal">
+          <span class="cut-name">Two Block</span>
+          <div class="cut-media">
+            <img src="assets/cuts/cut-3.jpg" alt="ทรงผม Two Block ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
+            <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-3.jpg</div>
+          </div>
+        </div>
+
+        <div class="cut-card reveal">
+          <span class="cut-name">Undercut</span>
+          <div class="cut-media">
+            <img src="assets/cuts/cut-4.jpg" alt="ทรงผม Undercut ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
+            <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-4.jpg</div>
+          </div>
+        </div>
+
+        <div class="cut-card reveal">
+          <span class="cut-name">Slick Back</span>
+          <div class="cut-media">
+            <img src="assets/cuts/cut-5.jpg" alt="ทรงผม Slick Back ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
+            <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-5.jpg</div>
+          </div>
+        </div>
+
+        <div class="cut-card reveal">
+          <span class="cut-name">Buzz Cut</span>
+          <div class="cut-media">
+            <img src="assets/cuts/cut-6.jpg" alt="ทรงผม Buzz Cut ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
+            <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-6.jpg</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--
+    ช่างประจำร้าน: ตอนนี้มีคนเดียว
+    เพิ่มช่างคนที่สองได้โดยคัดลอกทั้ง .barber-grid บล็อกนี้ วางต่อท้ายในกริดเดียวกัน
+    หรือทำเป็นกริดใหม่ใต้บล็อกนี้ก็ได้ โครงสร้าง .barber-photo + เนื้อหาขวาใช้ซ้ำได้ทันที
+  -->
+  <section class="section" id="barber">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="cut-rule" aria-hidden="true"></div>
+        <h2>ช่างประจำร้าน</h2>
+      </div>
+      <div class="barber-grid reveal">
+        <div class="barber-photo">
+          <img src="assets/barber.jpg" alt="[ ใส่ชื่อช่าง ] ช่างตัดผมประจำร้าน SUNRED STUDIO" onerror="this.style.display='none';this.closest('.barber-photo').classList.add('img-missing');">
+          <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/barber.jpg</div>
+        </div>
+        <div>
+          <span class="role-tag">Barber / เจ้าของร้าน</span>
+          <h3 class="barber-name">[ ใส่ชื่อช่าง ]</h3>
+          <p class="barber-bio">[ ใส่ประวัติช่าง 2–3 บรรทัด เช่น ประสบการณ์ตัดผม แนวที่ถนัด หรือเรื่องราวการเปิดร้าน ]</p>
+          <div class="skill-tags">
+            <span class="skill-tag">[ ความถนัด 1 ]</span>
+            <span class="skill-tag">[ ความถนัด 2 ]</span>
+            <span class="skill-tag">[ ความถนัด 3 ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    รีวิว: เจ้าของร้านจะมาเติมเนื้อหาเอง
+    วิธีเพิ่มรีวิวใหม่ — คัดลอกทั้งบล็อก <div class="review-card reveal"> ...
+    ...ถึง </div> หนึ่งชุด แล้ววางต่อท้ายใน .reviews-grid จากนั้นแก้ข้อความในวงเล็บเหลี่ยม [ ]
+  -->
+  <section class="section section--alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="cut-rule" aria-hidden="true"></div>
+        <h2>รีวิวจากลูกค้า</h2>
+      </div>
+
+      <div class="review-summary reveal">
+        <span class="review-score">[ 0.0 ]</span>
+        <div>
+          <span class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+          </span>
+          <div class="review-count">[ จำนวนรีวิวทั้งหมด ]</div>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+
+        <div class="review-card reveal">
+          <span class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+          </span>
+          <p class="review-text">[ ใส่ข้อความรีวิวที่นี่ ]</p>
+          <div class="review-by">
+            <span class="review-avatar" aria-hidden="true">[ ]</span>
+            <div>
+              <div class="review-name">[ ใส่ชื่อลูกค้า ]</div>
+              <div class="review-date">[ เดือน ปี ]</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <span class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+          </span>
+          <p class="review-text">[ ใส่ข้อความรีวิวที่นี่ ]</p>
+          <div class="review-by">
+            <span class="review-avatar" aria-hidden="true">[ ]</span>
+            <div>
+              <div class="review-name">[ ใส่ชื่อลูกค้า ]</div>
+              <div class="review-date">[ เดือน ปี ]</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <span class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+          </span>
+          <p class="review-text">[ ใส่ข้อความรีวิวที่นี่ ]</p>
+          <div class="review-by">
+            <span class="review-avatar" aria-hidden="true">[ ]</span>
+            <div>
+              <div class="review-name">[ ใส่ชื่อลูกค้า ]</div>
+              <div class="review-date">[ เดือน ปี ]</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/logo.jpg" alt="โลโก้ SUNRED STUDIO">
+          <span>SUNRED STUDIO</span>
+        </div>
+        <p class="footer-addr">174 ถนนยิงเป้า ตำบลสนามจันทร์ อำเภอเมืองนครปฐม จังหวัดนครปฐม 73000</p>
+        <div class="footer-social">
+          <a class="social-link" href="https://www.facebook.com/share/1a7z971wAq/" target="_blank" rel="noopener" aria-label="Facebook SUNRED STUDIO">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h-1.6c-.9 0-1.4.6-1.4 1.5V11h3l-.4 3h-2.6v7h-3v-7H7v-3h1.9V9c0-2.2 1.3-3.6 3.6-3.6H15V8z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.instagram.com/sunred.studio/" target="_blank" rel="noopener" aria-label="Instagram SUNRED STUDIO">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.4"/><circle cx="16.4" cy="7.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- TODO: ยังไม่มีลิงก์ TikTok จริง ใส่ URL แทน # เมื่อร้านเปิดบัญชี -->
+          <a class="social-link" href="#" target="_blank" rel="noopener" aria-label="TikTok SUNRED STUDIO">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v9.8a3.2 3.2 0 1 1-2.6-3.15"/><path d="M14 4c.3 2 1.8 3.5 3.7 3.8"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">เวลาทำการ</div>
+        <div class="footer-hours">10:00–20:00</div>
+        <div class="footer-hours-note">เปิดทุกวัน ไม่มีวันหยุด</div>
+      </div>
+      <div>
+        <div class="footer-heading">ติดต่อร้าน</div>
+        <a class="footer-phone" href="tel:+66611342874">061-134-2874</a><br>
+        <a class="footer-map-link" href="https://www.google.com/maps?q=13.808711,100.046276" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+          เปิดแผนที่นำทาง
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">SUNRED STUDIO · 174 ถนนยิงเป้า ตำบลสนามจันทร์ อำเภอเมืองนครปฐม จังหวัดนครปฐม 73000</div>
+  </div>
+</footer>
+
+<a class="float-call" id="floatCall" href="tel:+66611342874" aria-label="โทรจองคิว 061-134-2874">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5l2.7.7.8 3-1.8 1.6a13 13 0 0 0 5.2 5.2l1.6-1.8 3 .8.7 2.7c0 1-.9 1.8-1.9 1.7C10.4 16.9 7.1 13.6 5.7 7.3c-.2-1 .6-1.9 1.6-1.9z"/></svg>
+  จองคิว
+</a>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+
+  var header = document.getElementById('siteHeader');
+  var floatCall = document.getElementById('floatCall');
+  var hero = document.querySelector('.hero');
+  var heroHeight = hero ? hero.offsetHeight : 600;
+
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    if (y > 24) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+
+    if (y > heroHeight * 0.7) floatCall.classList.add('is-visible');
+    else floatCall.classList.remove('is-visible');
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function(){ heroHeight = hero ? hero.offsetHeight : 600; });
+  onScroll();
+
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      document.body.classList.add('hero-loaded');
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
+})();
+</script>
+
+</body>
+</html>
