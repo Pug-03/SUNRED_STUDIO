@@ -316,18 +316,6 @@
     flex:0 0 auto; width:clamp(150px, 42vw, 230px);
   }
 
-  .cut-name{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:var(--font-display); font-weight:600; font-size:15px;
-    margin-bottom:10px;
-  }
-  .cut-name::before{
-    content:''; width:14px; height:3px; background:var(--red); flex:none;
-    transition: width var(--t-base) var(--smooth);
-  }
-  .cut-card:hover .cut-name::before,
-  .cut-card:focus-within .cut-name::before{ width:26px; }
-
   .cut-media{
     position:relative; aspect-ratio:3/4; border-radius:var(--radius-img);
     overflow:hidden; background:var(--surface);
@@ -465,7 +453,7 @@
     }
     .hero-title .cut-sweep{ animation:none !important; display:none; }
     .status-dot{ animation:none !important; }
-    .cut-media, .cut-media::after, .cut-name::before{ transition-duration:200ms !important; }
+    .cut-media, .cut-media::after{ transition-duration:200ms !important; }
     .cuts-set-dup, .reviews-set-dup{ display:none !important; }
   }
 
@@ -608,7 +596,6 @@
           <div class="cuts-set">
 
             <div class="cut-card">
-              <span class="cut-name">Curly Fade</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-1.jpg" alt="ทรงผม Curly Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-1.jpg</div>
@@ -616,7 +603,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Textured Crop</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-2.jpg" alt="ทรงผม Textured Crop ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-2.jpg</div>
@@ -624,7 +610,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Low Fade</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-3.jpg" alt="ทรงผม Low Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-3.jpg</div>
@@ -632,7 +617,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Spiky Crop</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-4.jpg" alt="ทรงผม Spiky Crop ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-4.jpg</div>
@@ -640,7 +624,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Textured Quiff</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-5.jpg" alt="ทรงผม Textured Quiff ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-5.jpg</div>
@@ -648,7 +631,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Korean Two-Block</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-6.jpg" alt="ทรงผม Korean Two-Block ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-6.jpg</div>
@@ -656,7 +638,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Crop Fade</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-7.jpg" alt="ทรงผม Crop Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-7.jpg</div>
@@ -664,7 +645,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Side Fringe</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-8.jpg" alt="ทรงผม Side Fringe ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-8.jpg</div>
@@ -672,7 +652,6 @@
             </div>
 
             <div class="cut-card">
-              <span class="cut-name">Textured Crop</span>
               <div class="cut-media">
                 <img src="assets/cuts/cut-9.jpg" alt="ทรงผม Textured Crop ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-9.jpg</div>
