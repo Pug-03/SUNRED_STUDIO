@@ -2,7 +2,19 @@
 
 เว็บไซต์หน้าเดียว (single-page site) สำหรับร้านตัดผมชาย **SUNRED STUDIO** จังหวัดนครปฐม — แสดงค่าบริการ ผลงานทรงผม ช่างประจำร้าน แผนที่/เส้นทางมาร้าน และรีวิวจากลูกค้า พร้อมปุ่มโทรจองคิวและลิงก์โซเชียลของร้าน
 
-![ตัวอย่างหน้าเว็บ SUNRED STUDIO](docs/screenshot.png)
+## ตัวอย่างแต่ละส่วนของเว็บ
+
+ภาพหน้าจอด้านล่างเป็นขนาดมือถือ (390px) ตัดตามแต่ละเซคชันของ `index.html` ให้เห็นชัดว่าแต่ละส่วนของเว็บหน้าตาเป็นอย่างไร
+
+| # | ส่วน | ตัวอย่าง |
+|---|---|---|
+| 1 | **Hero** (`.hero`) — ชื่อร้าน เวลาเปิดปิด ที่ตั้ง ราคาเริ่มต้น ปุ่มโทรจอง/ดูค่าบริการ | <img src="docs/screenshots/hero.png" width="280"> |
+| 2 | **ค่าบริการ** (`#services`) — รายการราคาแบบ dotted list | <img src="docs/screenshots/services.png" width="280"> |
+| 3 | **ทรงผมที่ตัดมา** (`#cuts`) — แถบรูปเลื่อนอัตโนมัติ กดดูเต็มจอได้ | <img src="docs/screenshots/cuts.png" width="280"> |
+| 4 | **ช่างประจำร้าน** (`#barber`) — รูปวงกลมขอบแดง ชื่อ ตำแหน่ง ประวัติย่อ | <img src="docs/screenshots/barber.png" width="280"> |
+| 5 | **เส้นทางมาร้าน** (`#location`) — แผนที่ Google Maps ฝังจริง + ปุ่มนำทาง | <img src="docs/screenshots/location.png" width="280"> |
+| 6 | **รีวิวจากลูกค้า** (`#reviews`) — คะแนนเฉลี่ย + การ์ดรีวิวเลื่อนอัตโนมัติ | <img src="docs/screenshots/reviews.png" width="280"> |
+| 7 | **Footer** (`footer#contact`) — ที่อยู่ เวลาทำการ เบอร์โทร ลิงก์แผนที่ โซเชียล | <img src="docs/screenshots/footer.png" width="280"> |
 
 ## ข้อมูลร้าน
 
@@ -58,7 +70,14 @@ SUNRED STUDIO/
 │   └── cuts/
 │       ├── cut-1.jpg … cut-9.jpg   รูปผลงานทรงผมที่ใช้ในแถบเลื่อนอัตโนมัติ
 └── docs/
-    └── screenshot.png    ภาพตัวอย่างหน้าเว็บ (ใช้ใน README นี้)
+    └── screenshots/       ภาพตัวอย่างแต่ละส่วนของเว็บ (ใช้ใน README นี้)
+        ├── hero.png
+        ├── services.png
+        ├── cuts.png
+        ├── barber.png
+        ├── location.png
+        ├── reviews.png
+        └── footer.png
 ```
 
 ## วิธีรันดูบนเครื่องตัวเอง
