@@ -325,16 +325,16 @@
 
   /* ---------- cuts marquee ---------- */
   .cuts-marquee{
-    overflow-x:auto; overflow-y:hidden;
-    touch-action:pan-x;
-    scrollbar-width:none; -ms-overflow-style:none;
+    overflow:hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 18px, #000 calc(100% - 18px), transparent);
     mask-image: linear-gradient(to right, transparent, #000 18px, #000 calc(100% - 18px), transparent);
   }
-  .cuts-marquee::-webkit-scrollbar{ display:none; }
   .cuts-track{
     display:flex; gap:16px; width:max-content;
+    animation: marqueeSlide linear infinite;
+    animation-play-state:running;
   }
+  .cuts-marquee.is-paused .cuts-track{ animation-play-state:paused; }
   @media (min-width:768px){ .cuts-track{ gap:24px; } }
   .cuts-set{ display:contents; }
 
@@ -401,14 +401,16 @@
   .review-count{ font-size:14px; color:var(--ink-soft); }
 
   .reviews-marquee{
-    overflow-x:auto; overflow-y:hidden;
-    touch-action:pan-x;
-    scrollbar-width:none; -ms-overflow-style:none;
+    overflow:hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 18px, #000 calc(100% - 18px), transparent);
     mask-image: linear-gradient(to right, transparent, #000 18px, #000 calc(100% - 18px), transparent);
   }
-  .reviews-marquee::-webkit-scrollbar{ display:none; }
-  .reviews-track{ display:flex; align-items:flex-start; gap:20px; width:max-content; }
+  .reviews-track{
+    display:flex; align-items:flex-start; gap:20px; width:max-content;
+    animation: marqueeSlide linear infinite;
+    animation-play-state:running;
+  }
+  .reviews-marquee.is-paused .reviews-track{ animation-play-state:paused; }
   .reviews-set{ display:contents; }
 
   .review-card{
@@ -496,6 +498,10 @@
   @keyframes pulseDot{
     0%,100%{ opacity:1; } 50%{ opacity:.25; }
   }
+  @keyframes marqueeSlide{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
   @keyframes priceShake{
     0%, 90%, 100%{ transform:translateX(0) rotate(0); }
     91%, 95%{ transform:translateX(-3px) rotate(-3deg); }
@@ -527,6 +533,7 @@
     }
     .section-head .cut-rule{ animation:none !important; transform:scaleX(1) !important; }
     .cuts-set-dup, .reviews-set-dup{ display:none !important; }
+    .cuts-track, .reviews-track{ animation:none !important; }
     .lightbox, .lightbox-img, .lightbox-close{ transition-duration:120ms !important; }
   }
 
@@ -1245,35 +1252,37 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
-    var paused = false;
-    var resumeTimer = null;
-
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
-      marquee.addEventListener('mouseenter', function(){ paused = true; });
-      marquee.addEventListener('mouseleave', function(){ paused = false; });
+    // pure CSS animation drives the motion (reliable on iOS Safari, unlike
+    // JS-driven scrollLeft polling); JS only sizes the duration + pause state
+    var pxPerSecond = speed * 60;
+    function setDuration(){
+      var half = track.scrollWidth / 2;
+      track.style.animationDuration = (half / pxPerSecond) + 's';
     }
-    marquee.addEventListener('touchstart', function(){
-      paused = true;
+    setDuration();
+    window.addEventListener('resize', setDuration);
+
+    var resumeTimer = null;
+    function pause(){
+      marquee.classList.add('is-paused');
       if (resumeTimer) clearTimeout(resumeTimer);
-    }, { passive: true });
+    }
+    function resume(){
+      if (resumeTimer) clearTimeout(resumeTimer);
+      marquee.classList.remove('is-paused');
+    }
     function scheduleResume(){
       if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(function(){ paused = false; }, 1600);
+      resumeTimer = setTimeout(resume, 1600);
     }
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+      marquee.addEventListener('mouseenter', pause);
+      marquee.addEventListener('mouseleave', resume);
+    }
+    marquee.addEventListener('touchstart', pause, { passive: true });
     marquee.addEventListener('touchend', scheduleResume, { passive: true });
     marquee.addEventListener('touchcancel', scheduleResume, { passive: true });
-
-    function tick(){
-      var half = track.scrollWidth / 2;
-      if (!paused){
-        marquee.scrollLeft += speed;
-      }
-      if (marquee.scrollLeft >= half){
-        marquee.scrollLeft -= half;
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
   }
 
   initMarquee(document.querySelector('.cuts-marquee'), document.getElementById('cutsTrack'), 'cuts-set', 0.9);
