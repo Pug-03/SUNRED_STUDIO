@@ -67,6 +67,7 @@
 
     --exp: cubic-bezier(.16,1,.3,1);
     --smooth: cubic-bezier(.65,0,.35,1);
+    --bounce: cubic-bezier(.34,1.56,.64,1);
 
     --t-micro: 150ms;
     --t-base: 350ms;
@@ -75,8 +76,8 @@
 
     --gap-section: 72px;
     --radius-btn: 999px;
-    --radius-card: 16px;
-    --radius-img: 18px;
+    --radius-card: 18px;
+    --radius-img: 20px;
   }
 
   @media (min-width:1024px){
@@ -110,12 +111,16 @@
   @media (min-width:768px){ .wrap{ padding:0 32px; } }
 
   .section{ padding-block: var(--gap-section); position:relative; z-index:1; }
-  .section--alt{ background:rgba(245,244,242,.94); }
+  .section--alt{
+    background:
+      radial-gradient(var(--red-tint) 1.5px, transparent 1.5px) 0 0/22px 22px,
+      rgba(245,244,242,.94);
+  }
 
   .eyebrow{
     display:inline-flex; align-items:center; gap:10px;
     font-family:var(--font-mono); font-weight:600; font-size:13px;
-    letter-spacing:.04em; color:var(--ink-soft);
+    letter-spacing:.06em; color:var(--ink-soft);
     margin:0 0 14px;
   }
   .eyebrow::before{
@@ -126,20 +131,20 @@
   .section-head h2{ font-size:clamp(28px,5vw,40px); }
   .cut-rule{
     width:56px; height:4px; background:var(--red); margin-bottom:16px;
-    transform-origin:left; transform:scaleX(0); transition:transform var(--t-slow) var(--exp);
+    transform-origin:left; transform:scaleX(0);
   }
-  .section-head.in-view .cut-rule{ transform:scaleX(1); }
+  .section-head.in-view .cut-rule{ animation: ruleSnap var(--t-slow) var(--bounce) forwards; }
 
   /* ---------- buttons ---------- */
   .btn{
     display:inline-flex; align-items:center; justify-content:center; gap:10px;
     font-family:var(--font-body); font-weight:600; font-size:15px;
-    padding:14px 24px; border-radius:var(--radius-btn);
-    transition: transform var(--t-micro) var(--smooth), background-color var(--t-micro) linear;
+    padding:15px 26px; border-radius:var(--radius-btn);
+    transition: transform var(--t-base) var(--bounce), background-color var(--t-micro) linear;
     cursor:pointer; border:1.5px solid transparent; white-space:nowrap;
   }
-  .btn:hover{ transform:translateY(-2px); }
-  .btn:active{ transform:scale(.97); }
+  .btn:hover{ transform:translateY(-3px) scale(1.03); }
+  .btn:active{ transform:scale(.96); }
   .btn-primary{ background:var(--red); color:#fff; }
   .btn-primary:hover{ background:var(--red-deep); }
   .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
@@ -169,7 +174,11 @@
   }
 
   .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
-  .brand img{ height:36px; width:36px; border-radius:50%; object-fit:cover; flex:none; }
+  .brand img{
+    height:36px; width:36px; border-radius:50%; object-fit:cover; flex:none;
+    transition: transform var(--t-base) var(--bounce);
+  }
+  .brand:hover img{ transform:rotate(-12deg) scale(1.06); }
   .brand-name{
     font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.01em;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0;
@@ -193,9 +202,9 @@
     display:inline-flex; align-items:center; justify-content:center;
     width:34px; height:34px; border-radius:50%; color:var(--ink);
     border:1.5px solid var(--ink);
-    transition: transform var(--t-micro) var(--smooth), background-color var(--t-micro) linear, border-color var(--t-micro) linear;
+    transition: transform var(--t-base) var(--bounce), background-color var(--t-micro) linear, border-color var(--t-micro) linear;
   }
-  .social-link:hover{ background:var(--ink); color:#fff; transform:translateY(-2px); }
+  .social-link:hover{ background:var(--ink); color:#fff; transform:translateY(-2px) rotate(-10deg) scale(1.08); }
   .social-link svg{ width:17px; height:17px; }
 
   /* ---------- page-wide fixed logo watermark ---------- */
@@ -225,7 +234,7 @@
 
   .hero-stagger{
     opacity:0; transform:translateY(22px);
-    transition: opacity var(--t-hero) var(--exp), transform var(--t-hero) var(--exp);
+    transition: opacity var(--t-hero) var(--exp), transform var(--t-hero) var(--bounce);
   }
   .hero-loaded .hero-stagger{ opacity:1; transform:none; }
   .hero-loaded .s1{ transition-delay:0ms; }
@@ -250,7 +259,7 @@
   .hero-sub{
     font-size:17px; color:var(--ink-soft); max-width:46ch; margin:20px 0 32px;
   }
-  .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:48px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:48px; }
 
   .hero-facts{
     display:grid; grid-template-columns:1fr; gap:20px;
@@ -259,7 +268,10 @@
   @media (min-width:640px){ .hero-facts{ grid-template-columns:repeat(3,1fr); } }
   .fact-label{ font-size:13px; color:var(--ink-soft); margin-bottom:4px; }
   .fact-value{ font-family:var(--font-mono); font-weight:600; font-size:16px; font-variant-numeric:tabular-nums; }
-  .fact-value.is-red{ color:var(--red); }
+  .fact-value.is-red{
+    display:inline-block; color:var(--red); background:var(--red-tint);
+    padding:3px 10px; border-radius:999px;
+  }
 
   /* ---------- reveal (scroll) ---------- */
   .reveal{
@@ -271,18 +283,25 @@
   /* ---------- services ---------- */
   .price-list{ max-width:760px; }
   .price-row{
-    display:flex; align-items:baseline; gap:14px; padding:22px 0;
+    position:relative; display:flex; align-items:baseline; gap:14px; padding:24px 0 24px 20px;
     border-bottom:1px solid var(--line);
-    transition: transform var(--t-base) var(--smooth);
+    transition: transform var(--t-base) var(--bounce);
   }
-  .price-row:hover{ transform:translateX(8px); }
+  .price-row::before{
+    content:''; position:absolute; left:0; top:50%; width:8px; height:8px;
+    background:var(--red); border-radius:50%; transform:translateY(-50%) scale(0);
+    transition: transform var(--t-base) var(--bounce);
+  }
+  .price-row:hover{ transform:translateX(10px); }
+  .price-row:hover::before{ transform:translateY(-50%) scale(1); }
   .price-row:last-of-type{ border-bottom:none; }
   .price-name-th{ font-family:var(--font-display); font-weight:700; font-size:19px; }
   .price-name-en{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
   .price-leader{ flex:1; border-bottom:2px dotted var(--line); height:0; align-self:center; margin-bottom:6px; }
   .price-value{
-    font-family:var(--font-mono); font-weight:600; font-size:19px; color:var(--red);
+    font-family:var(--font-mono); font-weight:600; font-size:18px; color:var(--red);
     font-variant-numeric:tabular-nums; white-space:nowrap;
+    background:var(--red-tint); padding:5px 12px; border-radius:999px;
   }
   .price-note{
     margin-top:32px; font-size:14px; color:var(--ink-soft);
@@ -312,10 +331,10 @@
   .cut-media{
     position:relative; aspect-ratio:3/4; border-radius:var(--radius-img);
     overflow:hidden; background:var(--surface);
-    transform: translateY(0);
-    transition: transform var(--t-slow) var(--smooth);
+    transform: translateY(0) rotate(0deg);
+    transition: transform var(--t-slow) var(--bounce);
   }
-  .cut-card:hover .cut-media, .cut-card:focus-within .cut-media{ transform:translateY(-6px); }
+  .cut-card:hover .cut-media, .cut-card:focus-within .cut-media{ transform:translateY(-6px) rotate(-1.5deg); }
   .cut-media img{ width:100%; height:100%; object-fit:cover; }
   .cut-media::after{
     content:''; position:absolute; left:0; right:0; bottom:0; height:4px;
@@ -352,12 +371,7 @@
     border-radius:999px; margin-bottom:16px;
   }
   .barber-name{ font-size:clamp(26px,4vw,34px); margin-bottom:16px; }
-  .barber-bio{ color:var(--ink-soft); max-width:52ch; margin-bottom:24px; }
-  .skill-tags{ display:flex; flex-wrap:wrap; gap:10px; }
-  .skill-tag{
-    font-size:13px; font-weight:600; padding:8px 14px; border:1px solid var(--line);
-    border-radius:999px;
-  }
+  .barber-bio{ color:var(--ink-soft); max-width:52ch; }
 
   /* ---------- reviews ---------- */
   .review-summary{
@@ -386,9 +400,11 @@
   .review-card{
     flex:0 0 auto; width:clamp(260px, 78vw, 340px);
     background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-card);
-    padding:26px; transition: transform var(--t-base) var(--smooth), box-shadow var(--t-base) var(--smooth);
+    padding:26px; transform:rotate(-1.2deg);
+    transition: transform var(--t-base) var(--bounce), box-shadow var(--t-base) var(--smooth);
   }
-  .review-card:hover{ transform:translateY(-6px); box-shadow:0 18px 32px -22px rgba(11,11,11,.28); }
+  .review-card:nth-child(even){ transform:rotate(1.2deg); }
+  .review-card:hover{ transform:translateY(-6px) rotate(0deg); box-shadow:0 18px 32px -22px rgba(228,20,28,.3); }
 
   .review-card .review-stars{ margin-bottom:14px; }
   .review-text{ font-size:14.5px; margin-bottom:22px; min-height:66px; }
@@ -440,6 +456,11 @@
     46%{ transform:scaleX(1); transform-origin:right; }
     100%{ transform:scaleX(0); transform-origin:right; }
   }
+  @keyframes ruleSnap{
+    0%{ transform:scaleX(0); }
+    60%{ transform:scaleX(1.15); }
+    100%{ transform:scaleX(1); }
+  }
 
   @media (prefers-reduced-motion: reduce){
     *{ scroll-behavior:auto !important; }
@@ -449,7 +470,10 @@
     }
     .hero-title .cut-sweep{ animation:none !important; display:none; }
     .status-dot{ animation:none !important; }
-    .cut-media, .cut-media::after{ transition-duration:200ms !important; }
+    .cut-media, .cut-media::after, .price-row, .price-row::before, .brand img, .social-link{
+      transition-duration:200ms !important; transform:none !important;
+    }
+    .section-head .cut-rule{ animation:none !important; transform:scaleX(1) !important; }
     .cuts-set-dup, .reviews-set-dup{ display:none !important; }
   }
 
@@ -494,14 +518,14 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="eyebrow hero-stagger s1">ร้านตัดผมชาย · นครปฐม</p>
+      <p class="eyebrow hero-stagger s1">✂️ ร้านตัดผมชาย · นครปฐม</p>
       <h1 class="hero-title hero-stagger s2">
         <span class="cut-sweep" aria-hidden="true"></span>
-        <span>ตัดผมให้เป๊ะ<br>ไม่ต้องรอคิวนาน</span>
+        <span>SUNRED STUDIO</span>
       </h1>
-      <p class="hero-sub hero-stagger s3">เปิดทุกวัน 10:00–20:00 น. ไม่มีวันหยุด โทรจองคิวล่วงหน้าได้เลย ไม่ต้องเดินทางมาต่อคิว</p>
+      <p class="hero-sub hero-stagger s3">เปิดทุกวัน 10:00–20:00 น. ไม่มีวันหยุด แค่โทรมาบอกเวลา ที่เหลือให้เราจัดการ ไม่ต้องมายืนรอคิวให้เมื่อย</p>
       <div class="hero-actions hero-stagger s4">
-        <a class="btn btn-primary" href="tel:+66611342874">โทรจองคิว 061-134-2874</a>
+        <a class="btn btn-primary" href="tel:+66611342874">โทรจองคิวเลย 061-134-2874</a>
         <a class="btn btn-outline" href="#services">ดูค่าบริการ</a>
       </div>
       <div class="hero-facts hero-stagger s5">
@@ -569,7 +593,7 @@
           <div class="price-value">350 บาท</div>
         </div>
       </div>
-      <p class="price-note reveal">โทรสอบถามคิวว่างได้ที่ <a href="tel:+66611342874">061-134-2874</a></p>
+      <p class="price-note reveal">อยากรู้คิวว่างเมื่อไหร่ โทรมาถามได้เลย <a href="tel:+66611342874">061-134-2874</a></p>
     </div>
   </section>
 
@@ -676,11 +700,6 @@
           <span class="role-tag">Barber / เจ้าของร้าน</span>
           <h3 class="barber-name">[ ใส่ชื่อช่าง ]</h3>
           <p class="barber-bio">[ ใส่ประวัติช่าง 2–3 บรรทัด เช่น ประสบการณ์ตัดผม แนวที่ถนัด หรือเรื่องราวการเปิดร้าน ]</p>
-          <div class="skill-tags">
-            <span class="skill-tag">[ ความถนัด 1 ]</span>
-            <span class="skill-tag">[ ความถนัด 2 ]</span>
-            <span class="skill-tag">[ ความถนัด 3 ]</span>
-          </div>
         </div>
       </div>
     </div>
