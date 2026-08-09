@@ -126,6 +126,7 @@
   .eyebrow::before{
     content:''; width:20px; height:3px; background:var(--red); flex:none;
   }
+  .eyebrow-icon{ width:15px; height:15px; flex:none; color:var(--red); }
 
   .section-head{ margin-bottom:40px; }
   .section-head h2{ font-size:clamp(28px,5vw,40px); }
@@ -330,7 +331,7 @@
 
   .cut-media{
     position:relative; aspect-ratio:3/4; border-radius:var(--radius-img);
-    overflow:hidden; background:var(--surface);
+    overflow:hidden; background:var(--surface); cursor:pointer;
     transform: translateY(0) rotate(0deg);
     transition: transform var(--t-slow) var(--bounce);
   }
@@ -447,6 +448,29 @@
     font-size:12.5px; color:#8E8E8E;
   }
 
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:200;
+    display:flex; align-items:center; justify-content:center; padding:48px 20px;
+    background:rgba(11,11,11,.92);
+    opacity:0; visibility:hidden; transition: opacity var(--t-base) var(--smooth), visibility 0s var(--t-base);
+  }
+  .lightbox.is-open{ opacity:1; visibility:visible; transition-delay:0s; }
+  .lightbox-img{
+    max-width:min(92vw,720px); max-height:100%; width:auto; height:auto;
+    border-radius:var(--radius-img); object-fit:contain;
+    transform:scale(.94); transition: transform var(--t-base) var(--bounce);
+  }
+  .lightbox.is-open .lightbox-img{ transform:scale(1); }
+  .lightbox-close{
+    position:absolute; top:20px; right:20px; width:42px; height:42px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.1); color:#fff; border:1.5px solid rgba(255,255,255,.5);
+    cursor:pointer; transition: transform var(--t-base) var(--bounce), background-color var(--t-micro) linear;
+  }
+  .lightbox-close:hover{ background:rgba(255,255,255,.2); transform:rotate(90deg); }
+  .lightbox-close svg{ width:18px; height:18px; }
+
   @keyframes pulseDot{
     0%,100%{ opacity:1; } 50%{ opacity:.25; }
   }
@@ -475,6 +499,7 @@
     }
     .section-head .cut-rule{ animation:none !important; transform:scaleX(1) !important; }
     .cuts-set-dup, .reviews-set-dup{ display:none !important; }
+    .lightbox, .lightbox-img, .lightbox-close{ transition-duration:120ms !important; }
   }
 
   .no-js .hero-stagger, .no-js .reveal{ opacity:1; transform:none; }
@@ -518,7 +543,10 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="eyebrow hero-stagger s1">✂️ ร้านตัดผมชาย · นครปฐม</p>
+      <p class="eyebrow hero-stagger s1">
+        <svg class="eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        ร้านตัดผมชาย · นครปฐม
+      </p>
       <h1 class="hero-title hero-stagger s2">
         <span class="cut-sweep" aria-hidden="true"></span>
         <span>SUNRED STUDIO</span>
@@ -612,63 +640,63 @@
           <div class="cuts-set">
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-1.jpg" alt="ทรงผม Curly Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-1.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-2.jpg" alt="ทรงผม Textured Crop ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-2.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-3.jpg" alt="ทรงผม Low Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-3.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-4.jpg" alt="ทรงผม Spiky Crop ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-4.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-5.jpg" alt="ทรงผม Textured Quiff ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-5.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-6.jpg" alt="ทรงผม Korean Two-Block ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-6.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-7.jpg" alt="ทรงผม Crop Fade ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-7.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-8.jpg" alt="ทรงผม Side Fringe ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-8.jpg</div>
               </div>
             </div>
 
             <div class="cut-card">
-              <div class="cut-media">
+              <div class="cut-media" role="button" tabindex="0" aria-label="ดูรูปทรงผมแบบเต็ม">
                 <img src="assets/cuts/cut-9.jpg" alt="ทรงผม Textured Crop ที่ SUNRED STUDIO" onerror="this.style.display='none';this.closest('.cut-media').classList.add('img-missing');">
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-9.jpg</div>
               </div>
@@ -1147,6 +1175,13 @@
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="ปิดรูป">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+  </button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+</div>
+
 <script>
 (function(){
   document.documentElement.classList.remove('no-js');
@@ -1174,6 +1209,7 @@
       var dup = firstSet.cloneNode(true);
       dup.classList.add(setClass + '-dup');
       dup.setAttribute('aria-hidden', 'true');
+      dup.querySelectorAll('[tabindex]').forEach(function(el){ el.setAttribute('tabindex', '-1'); });
       track.appendChild(dup);
     }
 
@@ -1211,6 +1247,52 @@
 
   initMarquee(document.querySelector('.cuts-marquee'), document.getElementById('cutsTrack'), 'cuts-set', 0.45);
   initMarquee(document.querySelector('.reviews-marquee'), document.getElementById('reviewsTrack'), 'reviews-set', 0.5);
+
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxClose = document.getElementById('lightboxClose');
+  var lightboxLastFocus = null;
+
+  function openLightbox(img){
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || '';
+    lightboxLastFocus = document.activeElement;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lightboxLastFocus) lightboxLastFocus.focus();
+  }
+
+  var cutsTrack = document.getElementById('cutsTrack');
+  if (cutsTrack){
+    cutsTrack.addEventListener('click', function(e){
+      var media = e.target.closest('.cut-media');
+      if (!media || media.classList.contains('img-missing')) return;
+      var img = media.querySelector('img');
+      if (img) openLightbox(img);
+    });
+    cutsTrack.addEventListener('keydown', function(e){
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var media = e.target.closest('.cut-media');
+      if (!media || media.classList.contains('img-missing')) return;
+      e.preventDefault();
+      var img = media.querySelector('img');
+      if (img) openLightbox(img);
+    });
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
 
   if ('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
