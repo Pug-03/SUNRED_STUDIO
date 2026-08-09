@@ -34,8 +34,8 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 13.808711,
-    "longitude": 100.046276
+    "latitude": 13.808619,
+    "longitude": 100.046272
   },
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
@@ -74,14 +74,14 @@
     --t-slow: 600ms;
     --t-hero: 950ms;
 
-    --gap-section: 72px;
+    --gap-section: 48px;
     --radius-btn: 999px;
     --radius-card: 18px;
     --radius-img: 20px;
   }
 
   @media (min-width:1024px){
-    :root{ --gap-section: 140px; }
+    :root{ --gap-section: 100px; }
   }
 
   *,*::before,*::after{ box-sizing:border-box; }
@@ -92,7 +92,7 @@
     color:var(--ink);
     font-family:var(--font-body);
     font-weight:400;
-    line-height:1.7;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   img{ max-width:100%; display:block; }
@@ -128,7 +128,7 @@
   }
   .eyebrow-icon{ width:15px; height:15px; flex:none; color:var(--red); }
 
-  .section-head{ margin-bottom:40px; }
+  .section-head{ margin-bottom:28px; }
   .section-head h2{ font-size:clamp(28px,5vw,40px); }
   .cut-rule{
     width:56px; height:4px; background:var(--red); margin-bottom:16px;
@@ -228,7 +228,7 @@
     position:relative;
     display:flex; align-items:center;
     padding-top:calc(84px + env(safe-area-inset-top));
-    padding-bottom:56px;
+    padding-bottom:28px;
   }
   @media (min-width:860px){
     .hero{ min-height:100vh; min-height:100svh; }
@@ -261,9 +261,9 @@
   .hero-title span{ position:relative; z-index:0; }
 
   .hero-sub{
-    font-size:17px; color:var(--ink-soft); max-width:46ch; margin:20px 0 32px;
+    font-size:17px; color:var(--ink-soft); max-width:46ch; margin:16px 0 24px;
   }
-  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:48px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
 
   .hero-facts{
     display:grid; grid-template-columns:1fr; gap:20px;
@@ -275,6 +275,7 @@
   .fact-value.is-red{
     display:inline-block; color:var(--red); background:var(--red-tint);
     padding:3px 10px; border-radius:999px;
+    animation: priceShake 3.5s ease-in-out infinite;
   }
 
   /* ---------- reveal (scroll) ---------- */
@@ -287,7 +288,7 @@
   /* ---------- services ---------- */
   .price-list{ max-width:760px; }
   .price-row{
-    position:relative; display:flex; align-items:baseline; gap:14px; padding:24px 0 24px 20px;
+    position:relative; display:flex; align-items:baseline; gap:14px; padding:18px 0 18px 20px;
     border-bottom:1px solid var(--line);
     transition: transform var(--t-base) var(--bounce);
   }
@@ -308,14 +309,13 @@
     background:var(--red-tint); padding:5px 12px; border-radius:999px;
   }
   .price-note{
-    margin-top:32px; font-size:14px; color:var(--ink-soft);
+    margin-top:22px; font-size:14px; color:var(--ink-soft);
   }
   .price-note a{ color:var(--ink); font-weight:600; font-family:var(--font-mono); }
 
   /* ---------- cuts marquee ---------- */
   .cuts-marquee{
     overflow-x:auto; overflow-y:hidden;
-    -webkit-overflow-scrolling:touch;
     touch-action:pan-x;
     scrollbar-width:none; -ms-overflow-style:none;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 32px, #000 calc(100% - 32px), transparent);
@@ -379,7 +379,7 @@
 
   /* ---------- reviews ---------- */
   .review-summary{
-    display:flex; flex-wrap:wrap; align-items:baseline; gap:16px; margin-bottom:44px;
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:16px; margin-bottom:28px;
   }
   .review-score{
     font-family:var(--font-display); font-weight:700; color:var(--red);
@@ -391,14 +391,13 @@
 
   .reviews-marquee{
     overflow-x:auto; overflow-y:hidden;
-    -webkit-overflow-scrolling:touch;
     touch-action:pan-x;
     scrollbar-width:none; -ms-overflow-style:none;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 32px, #000 calc(100% - 32px), transparent);
     mask-image: linear-gradient(to right, transparent, #000 32px, #000 calc(100% - 32px), transparent);
   }
   .reviews-marquee::-webkit-scrollbar{ display:none; }
-  .reviews-track{ display:flex; gap:20px; width:max-content; }
+  .reviews-track{ display:flex; align-items:flex-start; gap:20px; width:max-content; }
   .reviews-set{ display:contents; }
 
   .review-card{
@@ -413,14 +412,22 @@
   .review-card .review-stars{ margin-bottom:14px; }
   .review-text{ font-size:14.5px; margin-bottom:22px; min-height:66px; }
   .review-by{ display:flex; align-items:center; gap:10px; }
-  .review-avatar{
-    width:36px; height:36px; border-radius:50%; background:var(--surface);
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-mono); font-weight:600; font-size:13px; color:var(--ink-soft);
-    flex:none;
-  }
   .review-name{ font-size:13.5px; font-weight:600; }
   .review-date{ font-size:12px; color:var(--ink-soft); }
+
+  /* ---------- location / map ---------- */
+  .location-grid{ display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
+  @media (min-width:860px){ .location-grid{ grid-template-columns:1fr 1.3fr; gap:48px; } }
+  .location-fact{ margin-bottom:16px; }
+  .location-fact:last-of-type{ margin-bottom:24px; }
+  .location-fact .fact-label{ margin-bottom:6px; }
+  .location-fact .fact-value{ font-size:16px; }
+  .map-frame{
+    position:relative; width:100%; aspect-ratio:4/3; overflow:hidden;
+    border-radius:var(--radius-card); border:1px solid var(--line);
+  }
+  @media (min-width:640px){ .map-frame{ aspect-ratio:16/10; } }
+  .map-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
   /* ---------- footer ---------- */
   .site-footer{ background:var(--ink); color:#fff; padding-block:64px; }
@@ -428,7 +435,7 @@
   @media (min-width:768px){ .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; gap:32px; } }
 
   .footer-brand{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
-  .footer-brand img{ height:34px; width:34px; border-radius:50%; }
+  .footer-brand img{ height:34px; width:34px; border-radius:50%; object-fit:cover; flex:none; }
   .footer-brand span{ font-family:var(--font-display); font-weight:700; font-size:16px; }
   .footer-addr{ color:#B9B9B9; font-size:14px; max-width:32ch; margin-bottom:20px; }
   .footer-social{ display:flex; gap:10px; }
@@ -447,7 +454,7 @@
     border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:2px;
   }
   .footer-bottom{
-    margin-top:48px; padding-top:24px; border-top:1px solid rgba(255,255,255,.14);
+    margin-top:32px; padding-top:20px; border-top:1px solid rgba(255,255,255,.14);
     font-size:12.5px; color:#8E8E8E;
   }
 
@@ -477,6 +484,11 @@
   @keyframes pulseDot{
     0%,100%{ opacity:1; } 50%{ opacity:.25; }
   }
+  @keyframes priceShake{
+    0%, 90%, 100%{ transform:translateX(0) rotate(0); }
+    91%, 95%{ transform:translateX(-3px) rotate(-3deg); }
+    93%, 97%{ transform:translateX(3px) rotate(3deg); }
+  }
   @keyframes heroSweep{
     0%{ transform:scaleX(0); transform-origin:left; }
     45%{ transform:scaleX(1); transform-origin:left; }
@@ -497,6 +509,7 @@
     }
     .hero-title .cut-sweep{ animation:none !important; display:none; }
     .status-dot{ animation:none !important; }
+    .fact-value.is-red{ animation:none !important; }
     .cut-media, .cut-media::after, .price-row, .price-row::before, .brand img, .social-link{
       transition-duration:200ms !important; transform:none !important;
     }
@@ -533,8 +546,7 @@
         <a class="social-link" href="https://www.instagram.com/sunred.studio/" target="_blank" rel="noopener" aria-label="Instagram SUNRED STUDIO">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.4"/><circle cx="16.4" cy="7.6" r="0.9" fill="currentColor" stroke="none"/></svg>
         </a>
-        <!-- TODO: ยังไม่มีลิงก์ TikTok จริง ใส่ URL แทน # เมื่อร้านเปิดบัญชี -->
-        <a class="social-link" href="#" target="_blank" rel="noopener" aria-label="TikTok SUNRED STUDIO">
+        <a class="social-link" href="https://www.tiktok.com/@sunred.studio" target="_blank" rel="noopener" aria-label="TikTok SUNRED STUDIO">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v9.8a3.2 3.2 0 1 1-2.6-3.15"/><path d="M14 4c.3 2 1.8 3.5 3.7 3.8"/></svg>
         </a>
       </nav>
@@ -735,6 +747,31 @@
     </div>
   </section>
 
+  <section class="section" id="location">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="cut-rule" aria-hidden="true"></div>
+        <h2>เส้นทางมาร้าน</h2>
+      </div>
+      <div class="location-grid reveal">
+        <div>
+          <div class="location-fact">
+            <div class="fact-label">ที่อยู่</div>
+            <div class="fact-value">174 ถนนยิงเป้า ตำบลสนามจันทร์ อำเภอเมืองนครปฐม จังหวัดนครปฐม 73000</div>
+          </div>
+          <div class="location-fact">
+            <div class="fact-label">เวลาเปิดปิด</div>
+            <div class="fact-value">10:00–20:00 ทุกวัน</div>
+          </div>
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=13.808619,100.046272" target="_blank" rel="noopener">นำทางด้วย Google Maps</a>
+        </div>
+        <div class="map-frame">
+          <iframe src="https://www.google.com/maps?q=13.808619,100.046272&z=16&output=embed" title="แผนที่ตั้งร้าน SUNRED STUDIO" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!--
     รีวิว: เจ้าของร้านจะมาเติมเนื้อหาเอง
     วิธีเพิ่มรีวิวใหม่ — คัดลอกทั้งบล็อก <div class="review-card"> ...
@@ -757,7 +794,6 @@
             <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
             <svg viewBox="0 0 20 20" fill="var(--red)"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg>
           </span>
-          <div class="review-count">จากลูกค้า 20 ท่าน</div>
         </div>
       </div>
 
@@ -779,7 +815,6 @@
               </span>
               <p class="review-text">ช่างบริการดี แนะนำดี อยากได้แบบไหนสามารถพูดคุยกับช่างได้</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">N</span>
                 <div>
                   <div class="review-name">Noon Thanakorn</div>
                   <div class="review-date">ก.ค. 2026</div>
@@ -797,7 +832,6 @@
               </span>
               <p class="review-text">ช่างดีมีประสบการณ์มานาน ร้านสวยสะอาด อยากได้ทรงไหนคุยกับช่างได้ มีที่จอดรถสะดวก</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">n</span>
                 <div>
                   <div class="review-name">natlada lawanvisut</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -815,7 +849,6 @@
               </span>
               <p class="review-text">ตัดดีมากครับ ช่างชวนคุยตลอดไม่เหงาเลยตัดมาตั้งแต่ร้านเก่า แนะนำเปิดใจมาลองตัดเลยครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">ม</span>
                 <div>
                   <div class="review-name">มิคกี้ คูสแมน</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -833,7 +866,6 @@
               </span>
               <p class="review-text">ตามมาตั้งแต่ร้านเดิม ช่างตัดดีเหมือนเดิมเลย พูดจาสุภาพ ร้านก็สะอาด แถมที่จอดรถเยอะ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">N</span>
                 <div>
                   <div class="review-name">Natthasit Namkhao</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -851,7 +883,6 @@
               </span>
               <p class="review-text">ตัดดีมากครับ ช่างคุยสนุก เป็นกันเอง ร้านสะอาด สวยๆเลยครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">M</span>
                 <div>
                   <div class="review-name">Maew Krissana</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -869,7 +900,6 @@
               </span>
               <p class="review-text">ช่างตัดผมดี พูดจาดี บริการดี ครับ ร้านสวย</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">พ</span>
                 <div>
                   <div class="review-name">พชร ลาวัณย์วิสุทธิ์</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -887,7 +917,6 @@
               </span>
               <p class="review-text">ช่างตัดผมดีมาก ยื่นเรฟแบบไหนได้แบบนั้น ช่างแนะนำลูกค้าดีมาก ชวนคุย พูดจาเพราะ ร้านแอร์เย็น ตกแต่งสวยค่ะ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">L</span>
                 <div>
                   <div class="review-name">Luksamon Malai</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -905,7 +934,6 @@
               </span>
               <p class="review-text">ช่างสุภาพ พูดจาดี แนะนำทรงผม และคอยสอนวิธีการเซ็ตผม ดีมากเลยครับ ประทับใจเลย รอบหน้าซ้ำอีกแน่นอนครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">S</span>
                 <div>
                   <div class="review-name">Supattra Utthalee</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -923,7 +951,6 @@
               </span>
               <p class="review-text">โคตรเฟี้ยว มาตัดกันเยอะๆนะค้าบ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">P</span>
                 <div>
                   <div class="review-name">Ppp Promchana</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -941,7 +968,6 @@
               </span>
               <p class="review-text">ช่างพูดจาไพเราะมากครับ นุ่มนวล ที่สำคัญ มือเบามากครับ ชวนคุยได้ดีมากครับ สุดยอด</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">A</span>
                 <div>
                   <div class="review-name">Anusorn Manasook</div>
                   <div class="review-date">ก.ค. 2026</div>
@@ -959,7 +985,6 @@
               </span>
               <p class="review-text">ร้านตัดดีมากครับ บรีฟตามใจลูกค้าดูแลดีมากครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">S</span>
                 <div>
                   <div class="review-name">Somphong Yodngoen</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -977,7 +1002,6 @@
               </span>
               <p class="review-text">ร้านสะอาดมากครับ ช่างตัดดี เป็นกันเองมาก ๆ ครับ แนะนำเลยครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">x</span>
                 <div>
                   <div class="review-name">xff.47</div>
                   <div class="review-date">ก.ค. 2026</div>
@@ -995,7 +1019,6 @@
               </span>
               <p class="review-text">ช่างตัดดี เซ็ตสวยเกินราคามากค่าแนะนำเลย</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">D</span>
                 <div>
                   <div class="review-name">D'Down Pavonrat</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1013,7 +1036,6 @@
               </span>
               <p class="review-text">บริการดี ตัดดีมากๆ ครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">ธ</span>
                 <div>
                   <div class="review-name">ธีรภัทร จิตวิริยนนท์</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1031,7 +1053,6 @@
               </span>
               <p class="review-text">พาแฟนไปตัดผม ตัดงานละเอียดมากเลยค่ะ ร้านตกแต่งน่ารัก น้องบริการดีเป็นกันเองมาก</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">E</span>
                 <div>
                   <div class="review-name">Eye Vi</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1049,7 +1070,6 @@
               </span>
               <p class="review-text">ตัดผมถูกใจมากบริการดีเป็นกันเองแนะนำเลยครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">A</span>
                 <div>
                   <div class="review-name">Anupap Permpool</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1067,7 +1087,6 @@
               </span>
               <p class="review-text">บริการดีมากครับ ตัดดีเหมือนเดิมตลอดครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">m</span>
                 <div>
                   <div class="review-name">minxokagoo</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1085,7 +1104,6 @@
               </span>
               <p class="review-text">ตัดดี เป็นกันเอง เยี่ยมเรยครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">N</span>
                 <div>
                   <div class="review-name">Nut Sunan</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1103,7 +1121,6 @@
               </span>
               <p class="review-text">เริ่ดมาก มากันเยอะๆ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">Y</span>
                 <div>
                   <div class="review-name">Yotsathad Rodchanachirawat</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1121,7 +1138,6 @@
               </span>
               <p class="review-text">ตัดดีครับ บริการดี ให้คำแนะนำดีครับ</p>
               <div class="review-by">
-                <span class="review-avatar" aria-hidden="true">c</span>
                 <div>
                   <div class="review-name">chayaphon taeng</div>
                   <div class="review-date">มิ.ย. 2026</div>
@@ -1153,8 +1169,7 @@
           <a class="social-link" href="https://www.instagram.com/sunred.studio/" target="_blank" rel="noopener" aria-label="Instagram SUNRED STUDIO">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.4"/><circle cx="16.4" cy="7.6" r="0.9" fill="currentColor" stroke="none"/></svg>
           </a>
-          <!-- TODO: ยังไม่มีลิงก์ TikTok จริง ใส่ URL แทน # เมื่อร้านเปิดบัญชี -->
-          <a class="social-link" href="#" target="_blank" rel="noopener" aria-label="TikTok SUNRED STUDIO">
+          <a class="social-link" href="https://www.tiktok.com/@sunred.studio" target="_blank" rel="noopener" aria-label="TikTok SUNRED STUDIO">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v9.8a3.2 3.2 0 1 1-2.6-3.15"/><path d="M14 4c.3 2 1.8 3.5 3.7 3.8"/></svg>
           </a>
         </div>
@@ -1167,7 +1182,7 @@
       <div>
         <div class="footer-heading">ติดต่อร้าน</div>
         <a class="footer-phone" href="tel:+66611342874">061-134-2874</a><br>
-        <a class="footer-map-link" href="https://www.google.com/maps?q=13.808711,100.046276" target="_blank" rel="noopener">
+        <a class="footer-map-link" href="https://www.google.com/maps?q=13.808619,100.046272" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
           เปิดแผนที่นำทาง
         </a>
