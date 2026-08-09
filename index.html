@@ -109,8 +109,8 @@
   .wrap{ max-width:1180px; margin:0 auto; padding:0 20px; }
   @media (min-width:768px){ .wrap{ padding:0 32px; } }
 
-  .section{ padding-block: var(--gap-section); }
-  .section--alt{ background:var(--surface); }
+  .section{ padding-block: var(--gap-section); position:relative; z-index:1; }
+  .section--alt{ background:rgba(245,244,242,.94); }
 
   .eyebrow{
     display:inline-flex; align-items:center; gap:10px;
@@ -196,13 +196,29 @@
     .call-btn-label-short{ display:none; }
   }
 
+  /* ---------- page-wide fixed logo watermark ---------- */
+  .page-bg-mark{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .page-bg-mark img{
+    width:min(170vw, 1500px); max-width:none; height:auto;
+    opacity:.05; filter:grayscale(1);
+    mix-blend-mode:multiply;
+  }
+  @media (min-width:768px){
+    .page-bg-mark img{ width:min(80vw, 1500px); }
+  }
+
   /* ---------- hero ---------- */
   .hero{
-    position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center;
+    position:relative;
+    min-height:100vh; min-height:100svh; display:flex; align-items:center;
     padding-top:calc(84px + env(safe-area-inset-top));
     padding-bottom:56px;
   }
-  .hero-inner{ max-width:1180px; margin:0 auto; padding:0 20px; width:100%; }
+  .hero-inner{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 20px; width:100%; }
   @media (min-width:768px){ .hero-inner{ padding:0 32px; } }
 
   .hero-stagger{
@@ -452,6 +468,10 @@
 </style>
 </head>
 <body>
+
+<div class="page-bg-mark" aria-hidden="true">
+  <img src="assets/logo.jpg" alt="">
+</div>
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
