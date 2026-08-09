@@ -226,9 +226,12 @@
   /* ---------- hero ---------- */
   .hero{
     position:relative;
-    min-height:100vh; min-height:100svh; display:flex; align-items:center;
+    display:flex; align-items:center;
     padding-top:calc(84px + env(safe-area-inset-top));
     padding-bottom:56px;
+  }
+  @media (min-width:860px){
+    .hero{ min-height:100vh; min-height:100svh; }
   }
   .hero-inner{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 20px; width:100%; }
   @media (min-width:768px){ .hero-inner{ padding:0 32px; } }
@@ -701,7 +704,6 @@
                 <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/cuts/cut-9.jpg</div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
