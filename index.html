@@ -846,7 +846,7 @@
     if (!reduceMotion){
       var paused = false;
       var resumeTimer = null;
-      var speed = 0.15; /* px per frame, slow drift */
+      var speed = 0.6; /* px per frame, slow drift */
 
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
         cutsMarquee.addEventListener('mouseenter', function(){ paused = true; });
