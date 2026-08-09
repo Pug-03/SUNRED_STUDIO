@@ -74,7 +74,7 @@
     --t-hero: 950ms;
 
     --gap-section: 72px;
-    --radius-btn: 10px;
+    --radius-btn: 999px;
     --radius-card: 16px;
     --radius-img: 18px;
   }
@@ -163,12 +163,20 @@
     gap:16px; padding:14px 20px; max-width:1180px; margin:0 auto;
   }
   @media (min-width:768px){ .header-inner{ padding:16px 32px; } }
+  @media (max-width:374px){
+    .header-inner{ gap:10px; padding:12px 14px; }
+    .social-row{ gap:2px; }
+    .header-right .btn{ padding:12px 16px; font-size:14px; }
+  }
 
-  .brand{ display:flex; align-items:center; gap:10px; flex:none; }
-  .brand img{ height:36px; width:36px; border-radius:50%; object-fit:cover; }
-  .brand-name{ font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.01em; }
+  .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .brand img{ height:36px; width:36px; border-radius:50%; object-fit:cover; flex:none; }
+  .brand-name{
+    font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.01em;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0;
+  }
 
-  .header-right{ display:flex; align-items:center; gap:14px; }
+  .header-right{ display:flex; align-items:center; gap:14px; flex:none; }
 
   .hours-pill{
     display:none; align-items:center; gap:8px;
@@ -289,24 +297,19 @@
 
   /* ---------- cuts marquee ---------- */
   .cuts-marquee{
-    overflow:hidden;
+    overflow-x:auto; overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x;
+    scrollbar-width:none; -ms-overflow-style:none;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 32px, #000 calc(100% - 32px), transparent);
     mask-image: linear-gradient(to right, transparent, #000 32px, #000 calc(100% - 32px), transparent);
   }
+  .cuts-marquee::-webkit-scrollbar{ display:none; }
   .cuts-track{
     display:flex; gap:16px; width:max-content;
-    animation: cutsMarquee 50s linear infinite;
   }
   @media (min-width:768px){ .cuts-track{ gap:24px; } }
-  @media (hover:hover) and (pointer:fine){
-    .cuts-track:hover, .cuts-track:focus-within{ animation-play-state:paused; }
-  }
   .cuts-set{ display:contents; }
-
-  @keyframes cutsMarquee{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(-50%); }
-  }
 
   .cut-card{
     flex:0 0 auto; width:clamp(150px, 42vw, 230px);
@@ -436,20 +439,6 @@
     font-size:12.5px; color:#8E8E8E;
   }
 
-  /* ---------- mobile floating call button ---------- */
-  .float-call{
-    position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom));
-    z-index:90; border-radius:999px; padding:15px 22px;
-    background:var(--red); color:#fff; font-weight:600; font-size:14.5px;
-    display:flex; align-items:center; gap:8px; box-shadow:0 14px 28px -12px rgba(228,20,28,.55);
-    transform:translateY(140%); opacity:0;
-    transition: transform 500ms var(--exp), opacity 500ms var(--exp), background-color var(--t-micro) linear;
-  }
-  .float-call.is-visible{ transform:translateY(0); opacity:1; }
-  .float-call:hover{ background:var(--red-deep); }
-  .float-call:active{ transform:scale(.97); }
-  @media (min-width:860px){ .float-call{ display:none; } }
-
   @keyframes pulseDot{
     0%,100%{ opacity:1; } 50%{ opacity:.25; }
   }
@@ -468,10 +457,7 @@
     }
     .hero-title .cut-sweep{ animation:none !important; display:none; }
     .status-dot{ animation:none !important; }
-    .float-call{ transition-duration:200ms !important; }
     .cut-media, .cut-media::after, .cut-name::before{ transition-duration:200ms !important; }
-    .cuts-track{ animation:none !important; }
-    .cuts-marquee{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
     .cuts-set-dup{ display:none !important; }
   }
 
@@ -825,30 +811,18 @@
   </div>
 </footer>
 
-<a class="float-call" id="floatCall" href="tel:+66611342874" aria-label="โทรจองคิว 061-134-2874">
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5l2.7.7.8 3-1.8 1.6a13 13 0 0 0 5.2 5.2l1.6-1.8 3 .8.7 2.7c0 1-.9 1.8-1.9 1.7C10.4 16.9 7.1 13.6 5.7 7.3c-.2-1 .6-1.9 1.6-1.9z"/></svg>
-  จองคิว
-</a>
-
 <script>
 (function(){
   document.documentElement.classList.remove('no-js');
 
   var header = document.getElementById('siteHeader');
-  var floatCall = document.getElementById('floatCall');
-  var hero = document.querySelector('.hero');
-  var heroHeight = hero ? hero.offsetHeight : 600;
 
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
     if (y > 24) header.classList.add('is-scrolled');
     else header.classList.remove('is-scrolled');
-
-    if (y > heroHeight * 0.7) floatCall.classList.add('is-visible');
-    else floatCall.classList.remove('is-visible');
   }
   document.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', function(){ heroHeight = hero ? hero.offsetHeight : 600; });
   onScroll();
 
   requestAnimationFrame(function(){
@@ -857,14 +831,47 @@
     });
   });
 
+  var cutsMarquee = document.querySelector('.cuts-marquee');
   var cutsTrack = document.getElementById('cutsTrack');
-  if (cutsTrack){
+  if (cutsTrack && cutsMarquee){
     var firstSet = cutsTrack.querySelector('.cuts-set');
     if (firstSet){
       var dup = firstSet.cloneNode(true);
       dup.classList.add('cuts-set-dup');
       dup.setAttribute('aria-hidden', 'true');
       cutsTrack.appendChild(dup);
+    }
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion){
+      var paused = false;
+      var resumeTimer = null;
+      var speed = 0.15; /* px per frame, slow drift */
+
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+        cutsMarquee.addEventListener('mouseenter', function(){ paused = true; });
+        cutsMarquee.addEventListener('mouseleave', function(){ paused = false; });
+      }
+      cutsMarquee.addEventListener('touchstart', function(){
+        paused = true;
+        if (resumeTimer) clearTimeout(resumeTimer);
+      }, { passive: true });
+      cutsMarquee.addEventListener('touchend', function(){
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(function(){ paused = false; }, 1600);
+      }, { passive: true });
+
+      function tick(){
+        var half = cutsTrack.scrollWidth / 2;
+        if (!paused){
+          cutsMarquee.scrollLeft += speed;
+        }
+        if (cutsMarquee.scrollLeft >= half){
+          cutsMarquee.scrollLeft -= half;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
     }
   }
 
