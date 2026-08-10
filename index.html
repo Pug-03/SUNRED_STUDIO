@@ -163,6 +163,22 @@
   .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
   .btn-outline:hover{ background:var(--ink); color:#fff; }
 
+  /* ---------- floating call button ---------- */
+  .call-fab{
+    position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom)); z-index:90;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--red); color:#fff;
+    padding:14px 20px; border-radius:var(--radius-btn);
+    font-family:var(--font-body); font-weight:700; font-size:14px; white-space:nowrap;
+    opacity:0; transform:translateY(16px) scale(.92); pointer-events:none;
+    transition: opacity var(--t-base) var(--smooth), transform var(--t-base) var(--bounce), background-color var(--t-micro) linear;
+  }
+  .call-fab.is-visible{ opacity:1; transform:none; pointer-events:auto; }
+  .call-fab:hover{ background:var(--red-deep); transform:translateY(-3px) scale(1.03); }
+  .call-fab:active{ transform:scale(.94); }
+  .call-fab svg{ flex:none; }
+  @media (min-width:768px){ .call-fab{ right:28px; bottom:calc(28px + env(safe-area-inset-bottom)); } }
+
   /* ---------- header ---------- */
   .site-header{
     position:fixed; inset:0 0 auto 0; z-index:100;
@@ -528,7 +544,7 @@
     .hero-title .cut-sweep{ animation:none !important; display:none; }
     .status-dot{ animation:none !important; }
     .fact-value.is-red{ animation:none !important; }
-    .cut-media, .cut-media::after, .price-row, .price-row::before, .brand img, .social-link{
+    .cut-media, .cut-media::after, .price-row, .price-row::before, .brand img, .social-link, .call-fab{
       transition-duration:200ms !important; transform:none !important;
     }
     .section-head .cut-rule{ animation:none !important; transform:scaleX(1) !important; }
@@ -754,12 +770,12 @@
       </div>
       <div class="barber-grid reveal">
         <div class="barber-photo">
-          <img src="assets/barber.jpg" alt="ชนินทร์ ลาวัณย์วิสุทธิ์ (นิว) ช่างตัดผมประจำร้าน SUNRED STUDIO" loading="lazy" onerror="this.style.display='none';this.closest('.barber-photo').classList.add('img-missing');">
+          <img src="assets/barber.jpg" alt="ชนินทร์ ลาวัณย์วิสุทธิ์ (ช่างนิว) ช่างตัดผมประจำร้าน SUNRED STUDIO" loading="lazy" onerror="this.style.display='none';this.closest('.barber-photo').classList.add('img-missing');">
           <div class="img-fallback" aria-hidden="true">ใส่รูปที่นี่ —<br>assets/barber.jpg</div>
         </div>
         <div>
           <span class="role-tag">Barber</span>
-          <h3 class="barber-name">ชนินทร์ ลาวัณย์วิสุทธิ์ (นิว)</h3>
+          <h3 class="barber-name">ชนินทร์ ลาวัณย์วิสุทธิ์ (ช่างนิว)</h3>
           <p class="barber-bio">ประสบการณ์ตัดผมที่ร้าน Good Bros Barber Shop มา 3 ปี</p>
         </div>
       </div>
@@ -1218,19 +1234,45 @@
   <img class="lightbox-img" id="lightboxImg" src="" alt="">
 </div>
 
+<a href="tel:+66611342874" class="call-fab" id="callFab" aria-label="โทรจองคิว SUNRED STUDIO 061-134-2874">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  <span>โทรจองคิว</span>
+</a>
+
 <script>
 (function(){
   document.documentElement.classList.remove('no-js');
 
   var header = document.getElementById('siteHeader');
+  var hero = document.querySelector('.hero');
+  var callFab = document.getElementById('callFab');
+  var fabVisible = false;
+  var scrollTicking = false;
+
+  function updateFab(){
+    if (!callFab || !hero) return;
+    var bottom = hero.getBoundingClientRect().bottom;
+    if (!fabVisible && bottom <= 40) fabVisible = true;
+    else if (fabVisible && bottom > 160) fabVisible = false;
+    callFab.classList.toggle('is-visible', fabVisible);
+  }
 
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
     if (y > 24) header.classList.add('is-scrolled');
     else header.classList.remove('is-scrolled');
+
+    if (!scrollTicking){
+      scrollTicking = true;
+      requestAnimationFrame(function(){
+        updateFab();
+        scrollTicking = false;
+      });
+    }
   }
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+  updateFab();
 
   requestAnimationFrame(function(){
     requestAnimationFrame(function(){
