@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+  SUNRED STUDIO — เว็บไฟล์เดียว (HTML + CSS อยู่ใน <style>, JS อยู่ใน <script> ท้ายไฟล์)
+  ไม่มีขั้นตอน build เปิดไฟล์นี้ใช้งานได้ทันที รายละเอียดวิธีแก้ไขแต่ละจุดดูใน README.md
+-->
 <html lang="th" class="no-js">
 <head>
 <meta charset="UTF-8">
@@ -1251,6 +1255,8 @@
   var fabVisible = false;
   var scrollTicking = false;
 
+  // ใช้ระยะ 2 ค่าต่างกัน (โผล่ตอน <=40px, ซ่อนตอน >160px เลยขอบล่าง hero)
+  // กันปุ่มกะพริบเข้า-ออกตอนผู้ใช้เลื่อนวนอยู่แถวขอบ hero พอดี
   function updateFab(){
     if (!callFab || !hero) return;
     var bottom = hero.getBoundingClientRect().bottom;
@@ -1259,6 +1265,8 @@
     callFab.classList.toggle('is-visible', fabVisible);
   }
 
+  // สลับพื้นหลังโปร่งใส/เบลอของ header + เช็คการโชว์ปุ่มโทรลอยตัว
+  // จำกัดให้ทำงานแค่ 1 ครั้งต่อเฟรมด้วย requestAnimationFrame กัน scroll event ยิงถี่เกินจนหน่วง
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
     if (y > 24) header.classList.add('is-scrolled');
@@ -1276,12 +1284,17 @@
   onScroll();
   updateFab();
 
+  // ใช้ requestAnimationFrame ซ้อนกัน 2 ชั้น เพื่อรอให้เบราว์เซอร์ paint เฟรมแรกไปก่อน
+  // ค่อยเติมคลาส hero-loaded — ถ้าเติมทันทีจะเห็นแค่จุดจบของ transition โดยไม่มีอนิเมชันเลย
   requestAnimationFrame(function(){
     requestAnimationFrame(function(){
       document.body.classList.add('hero-loaded');
     });
   });
 
+  // ตั้งค่าแถบเลื่อนวนไม่มีที่สิ้นสุด 1 แถบ (แถบทรงผมหรือแถบรีวิว): โคลนชุดการ์ด
+  // ต่อท้ายเองเพื่อให้วนลูปไม่มีรอยต่อ ส่วนการเลื่อนจริงให้ CSS animation เป็นคนขับเคลื่อน
+  // ฟังก์ชันนี้แค่คำนวณความเร็ว/duration ให้พอดี และสลับ pause ตอนผู้ใช้แตะ/hover
   function initMarquee(marquee, track, setClass, speed){
     if (!marquee || !track) return;
     var firstSet = track.querySelector('.' + setClass);
@@ -1296,8 +1309,8 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
-    // pure CSS animation drives the motion (reliable on iOS Safari, unlike
-    // JS-driven scrollLeft polling); JS only sizes the duration + pause state
+    // ตัวเคลื่อนไหวจริงเป็น CSS animation ล้วน (เชื่อถือได้กว่าบน iOS Safari
+    // ต่างจากเดิมที่ใช้ JS วน scrollLeft) — JS แค่คำนวณ duration + คุม pause
     var pxPerSecond = speed * 60;
     function setDuration(){
       var half = track.scrollWidth / 2;
@@ -1332,6 +1345,8 @@
   initMarquee(document.querySelector('.cuts-marquee'), document.getElementById('cutsTrack'), 'cuts-set', 0.9);
   initMarquee(document.querySelector('.reviews-marquee'), document.getElementById('reviewsTrack'), 'reviews-set', 0.5);
 
+  // หน้าต่างดูรูปทรงผมแบบเต็มจอ — จำ element ที่โฟกัสอยู่ก่อนเปิดไว้
+  // เพื่อคืนโฟกัสกลับไปที่เดิมตอนปิด (สำคัญกับผู้ใช้ที่เล่นด้วยคีย์บอร์ด/screen reader)
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightboxImg');
   var lightboxClose = document.getElementById('lightboxClose');
@@ -1353,6 +1368,8 @@
     if (lightboxLastFocus) lightboxLastFocus.focus();
   }
 
+  // คลิกหรือกด Enter/Space บนรูปทรงผมเพื่อเปิดดูเต็มจอ
+  // ข้ามการ์ดที่รูปโหลดไม่ขึ้น (img-missing) เพราะไม่มีรูปให้เปิดดู
   var cutsTrack = document.getElementById('cutsTrack');
   if (cutsTrack){
     cutsTrack.addEventListener('click', function(e){
@@ -1378,6 +1395,9 @@
     if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
   });
 
+  // scroll-reveal: เติมคลาส .in-view (สั่งให้ CSS transition ทำงาน) ตอนที่
+  // element เข้ามาในจอ 14% เป็นครั้งแรก แล้วเลิกสังเกต — เป็น reveal ทางเดียว
+  // เลื่อนกลับขึ้นไปใหม่จะไม่เล่นอนิเมชันซ้ำ
   if ('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
